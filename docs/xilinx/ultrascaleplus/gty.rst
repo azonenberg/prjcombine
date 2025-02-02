@@ -62,11 +62,11 @@ Attributes
   Always 16'b0000000000000000
 * PPF0_CFG
   Something to do with QPLL0. Not yet fully understood. So far:
-    * Bits 15:13: always 0
-    * Bit 12: 1 if using fractional-N, 0 if not
-    * Bit 11: 0 if using fractional-N, 1 if not
-    * Bit 10: both 0 and 1 seen, but no clear pattern yet
-    * Bits 9:0: always 0
+   * Bits 15:13: always 0
+   * Bit 12: 1 if using fractional-N, 0 if not
+   * Bit 11: 0 if using fractional-N, 1 if not
+   * Bit 10: both 0 and 1 seen, but no clear pattern yet
+   * Bits 9:0: always 0
 * PPF1_CFG
   Seems to be same mapping as PPF0_CFG but for QPLL1
 * QPLL0CLKOUT_RATE
@@ -79,22 +79,22 @@ Attributes
   Always 16'b1101000000111000
 * QPLL0_CFG2
   Something to do with QPLL0. Not yet fully understood. So far:
-  * Bits 15:12: always 0
-  * Bits 11:6: always 1
-  * Bits 5:2: always 0
-  * Bits 1:0: both 1 if using fractional-N, 0 if not
+   * Bits 15:12: always 0
+   * Bits 11:6: always 1
+   * Bits 5:2: always 0
+   * Bits 1:0: both 1 if using fractional-N, 0 if not
 * QPLL0_CFG2_G3
   Always same as QPLL0_CFG2
 * QPLL0_CFG3
   Always 16'b0000000100100000
 * QPLL0_CFG4
   Something to do with QPLL0. Not yet fully understood. So far:
-  * Bits 15:8: always 0
-  * Bit 7: 1 if using fractional-N, 0 if not
-  * Bits 6:3: always 0
-  * Bit 2: 1 if using fractional-N, 0 if not
-  * Bit 1: 0 if using fractional-N, 1 if not
-  * Bit 0: both 0 and 1 seen, but no clear pattern yet
+   * Bits 15:8: always 0
+   * Bit 7: 1 if using fractional-N, 0 if not
+   * Bits 6:3: always 0
+   * Bit 2: 1 if using fractional-N, 0 if not
+   * Bit 1: 0 if using fractional-N, 1 if not
+   * Bit 0: both 0 and 1 seen, but no clear pattern yet
 * QPLL0_CP
   Always 10'b0011111111
 * QPLL0_CP_G3
@@ -112,10 +112,10 @@ Attributes
 * QPLL0_LOCK_CFG_G3
   Always 16'b0010010111101000
 * QPLL0_LPF
-  * Bit 9: always 1
-  * Bits 8:6: always 0
-  * Bit 5: 0 if using fractional-N, 1 if not
-  * Bits 4:0: always 1
+   * Bit 9: always 1
+   * Bits 8:6: always 0
+   * Bit 5: 0 if using fractional-N, 1 if not
+   * Bits 4:0: always 1
 * QPLL0_LPF_G3
   Always 10'b0111010101
 * QPLL0_PCI_EN
@@ -126,9 +126,9 @@ Attributes
   QPLL0 reference clock divider. Set to an integer between 1 and 4 to control the input divider between refclk input and PFD.
   NOTE: according to UG578 table B-1, this attribute can also take the values 5, 6, 8, 10, 12, 16, and 20. Maybe the PLL doesn't like input frequencies this low?
 * QPLL0_SDM_CFG0
-  * Bits 15:8: always 0
-  * Bit 7: 0 if using fractional-N, 1 if not
-  * Bits 6:0: always 0
+   * Bits 15:8: always 0
+   * Bit 7: 0 if using fractional-N, 1 if not
+   * Bits 6:0: always 0
 * QPLL0_SDM_CFG1
   So far, always 16'b0000000000000000
 * QPLL0_SDM_CFG2
