@@ -13,22 +13,22 @@ Clocking
 
 TX and RX of each channel can be clocked independently from one of three sources:
 
- * QPLL0 (in COMMON block, shared by all CHANNELs in the quad)
- * QPLL1 (in COMMON block, shared by all CHANNELs in the quad)
- * CPLL (in CHANNEL block, dedicated to this CHANNEL)
+* QPLL0 (in COMMON block, shared by all CHANNELs in the quad)
+* QPLL1 (in COMMON block, shared by all CHANNELs in the quad)
+* CPLL (in CHANNEL block, dedicated to this CHANNEL)
 
 Each PLL has a different operating frequency range, which must be carefully considered when planning complex setups with multiple lanes in a quad running at different data rates.
 
 In the case of KU+, the native data rates for each PLL at the nominal Vcore are as follows. To run at lower rates than shown here, the QPLL output divider and/or channel sub-rate modes must be used.
 
- * CPLL: 4.0 to:
+* CPLL: 4.0 to:
 	* -1 speed: 8.5 Gbps
 	* -2 or -3 speed: 12.5 Gbps
- * QPLL0: 19.6 to:
+* QPLL0: 19.6 to:
     * -1 speed: 25.785 Gbps
     * -2 speed: 28.21 Gbps
     * -3 speed: 32.75 Gbps
- * QPLL1: 16.0 to:
+* QPLL1: 16.0 to:
     * -1 speed: 25.785 Gbps
     * -2 or -3 speed: 26.0 Gbps
 
