@@ -43,76 +43,96 @@ Attributes
 -----------
 
 * BIAS_CFG0
-  TODO
+  Always 16'b0000000000000000
 * BIAS_CFG1
-  TODO
+  Always 16'b0000000000000000
 * BIAS_CFG2
-  TODO
+  Always 16'b0000010100100100
 * BIAS_CFG3
-  TODO
+  Always 16'b0000000001000001
 * BIAS_CFG4
-  TODO
+  Always 16'b0000000000010000
 * BIAS_CFG_RSVD
-  TODO
+  Always 16'b0000000000000000
 * COMMON_CFG0
-  TODO
+  Always 16'b0000000000000000
 * COMMON_CFG1
-  TODO
+  Always 16'b0000000000000000
 * POR_CFG
-  TODO
+  Always 16'b0000000000000000
 * PPF0_CFG
-  TODO
+  Something to do with QPLL0. Not yet fully understood. So far:
+    * Bits 15:13: always 0
+    * Bit 12: 1 if using fractional-N, 0 if not
+    * Bit 11: 0 if using fractional-N, 1 if not
+    * Bit 10: both 0 and 1 seen, but no clear pattern yet
+    * Bits 9:0: always 0
 * PPF1_CFG
-  TODO
+  Seems to be same mapping as PPF0_CFG but for QPLL1
 * QPLL0CLKOUT_RATE
   QPLL0 output divide-by-two control. Set to "HALF" to enable the divider or "FULL" to bypass it.
 * QPLL0_CFG0
-  TODO
+  Always 16'b0011001100011100
 * QPLL0_CFG1
-  TODO
+  Always 16'b1101000000111000
 * QPLL0_CFG1_G3
-  TODO
+  Always 16'b1101000000111000
 * QPLL0_CFG2
-  TODO
+  Something to do with QPLL0. Not yet fully understood. So far:
+  * Bits 15:12: always 0
+  * Bits 11:6: always 1
+  * Bits 5:2: always 0
+  * Bits 1:0: both 1 if using fractional-N, 0 if not
 * QPLL0_CFG2_G3
-  TODO
+  Always same as QPLL0_CFG2
 * QPLL0_CFG3
-  TODO
+  Always 16'b0000000100100000
 * QPLL0_CFG4
-  TODO
+  Something to do with QPLL0. Not yet fully understood. So far:
+  * Bits 15:8: always 0
+  * Bit 7: 1 if using fractional-N, 0 if not
+  * Bits 6:3: always 0
+  * Bit 2: 1 if using fractional-N, 0 if not
+  * Bit 1: 0 if using fractional-N, 1 if not
+  * Bit 0: both 0 and 1 seen, but no clear pattern yet
 * QPLL0_CP
-  TODO
+  Always 10'b0011111111
 * QPLL0_CP_G3
-  TODO
+  Always 10'b0000001111
 * QPLL0_FBDIV
   QPLL0 feedback divider N. Set to an integer between 16 and 160 to control the PLL multiplier between VCO and PFD.
 * QPLL0_FBDIV_G3
-  TODO
+  Related to QPLL0 feedback divider but not yet understood. Values seen so far 160 and 128. Possible values in DRP range 16 to 160.
 * QPLL0_INIT_CFG0
-  TODO
+  Always 16'b0000001010110010
 * QPLL0_INIT_CFG1
-  TODO
+  Always 8'b00000000
 * QPLL0_LOCK_CFG
-  TODO
+  Always 16'b0010010111101000
 * QPLL0_LOCK_CFG_G3
-  TODO
+  Always 16'b0010010111101000
 * QPLL0_LPF
-  TODO
+  * Bit 9: always 1
+  * Bits 8:6: always 0
+  * Bit 5: 0 if using fractional-N, 1 if not
+  * Bits 4:0: always 1
 * QPLL0_LPF_G3
-  TODO
+  Always 10'b0111010101
 * QPLL0_PCI_EN
   Always 1'b0 in all configurations tested to date, but we have not tested anything using the PCIe IP.
 * QPLL0_RATE_SW_USE_DRP
-  TODO
+  Always 1'b1
 * QPLL0_REFCLK_DIV
   QPLL0 reference clock divider. Set to an integer between 1 and 4 to control the input divider between refclk input and PFD.
   NOTE: according to UG578 table B-1, this attribute can also take the values 5, 6, 8, 10, 12, 16, and 20. Maybe the PLL doesn't like input frequencies this low?
 * QPLL0_SDM_CFG0
-  TODO
+  * Bits 15:8: always 0
+  * Bit 7: 0 if using fractional-N, 1 if not
+  * Bits 6:0: always 0
 * QPLL0_SDM_CFG1
-  TODO
+  So far, always 16'b0000000000000000
 * QPLL0_SDM_CFG2
-  TODO
+  So far, always 16'b0000000000000000
 * QPLL1CLKOUT_RATE
   QPLL1 output divide-by-two control. Set to "HALF" to enable the divider or "FULL" to bypass it.
 * QPLL1_CFG0
@@ -128,7 +148,9 @@ Attributes
 * QPLL1_CFG3
   TODO
 * QPLL1_CFG4
-  TODO
+  * Bits 16:2: always 0
+  * Bit 1: always 1
+  * Bit 0: 0 for half rate mode, 1 for full rate mode (TODO verify with more configs)
 * QPLL1_CP
   TODO
 * QPLL1_CP_G3
@@ -136,7 +158,7 @@ Attributes
 * QPLL1_FBDIV
   QPLL1 feedback divider N. Set to an integer between 16 and 160 to control the PLL multiplier between VCO and PFD.
 * QPLL1_FBDIV_G3
-  TODO
+  Related to QPLL1 feedback divider but not yet understood
 * QPLL1_INIT_CFG0
   TODO
 * QPLL1_INIT_CFG1
