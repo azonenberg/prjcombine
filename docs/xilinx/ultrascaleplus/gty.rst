@@ -13,24 +13,24 @@ Clocking
 
 TX and RX of each channel can be clocked independently from one of three sources:
 
-* | QPLL0 (in COMMON block, shared by all CHANNELs in the quad)
-* | QPLL1 (in COMMON block, shared by all CHANNELs in the quad)
-* | CPLL (in CHANNEL block, dedicated to this CHANNEL)
+* QPLL0 (in COMMON block, shared by all CHANNELs in the quad)
+* QPLL1 (in COMMON block, shared by all CHANNELs in the quad)
+* CPLL (in CHANNEL block, dedicated to this CHANNEL)
 
 Each PLL has a different operating frequency range, which must be carefully considered when planning complex setups with multiple lanes in a quad running at different data rates.
 
 In the case of KU+, the native data rates for each PLL at the nominal Vcore are as follows. To run at lower rates than shown here, the QPLL output divider and/or channel sub-rate modes must be used.
 
-* | CPLL: 4.0 to:
-	* | -1 speed: 8.5 Gbps
-	* | -2 or -3 speed: 12.5 Gbps
-* | QPLL0: 19.6 to:
-    * | -1 speed: 25.785 Gbps
-    * | -2 speed: 28.21 Gbps
-    * | -3 speed: 32.75 Gbps
-* | QPLL1: 16.0 to:
-    * | -1 speed: 25.785 Gbps
-    * | -2 or -3 speed: 26.0 Gbps
+* CPLL: 4.0 to:
+	* -1 speed: 8.5 Gbps
+	* -2 or -3 speed: 12.5 Gbps
+* QPLL0: 19.6 to:
+    * -1 speed: 25.785 Gbps
+    * -2 speed: 28.21 Gbps
+    * -3 speed: 32.75 Gbps
+* QPLL1: 16.0 to:
+    * -1 speed: 25.785 Gbps
+    * -2 or -3 speed: 26.0 Gbps
 
 Check table 64 of DS922 for full details on voltage ranges and data rates.
 
@@ -42,59 +42,59 @@ Note that the internal transceiver drive circuitry is DDR, i.e. for 20 Gbps data
 Attributes
 -----------
 
-* | BIAS_CFG0
+* | **BIAS_CFG0**
   | Always 16'b0000000000000000
-* | BIAS_CFG1
+* | **BIAS_CFG1**
   | Always 16'b0000000000000000
-* | BIAS_CFG2
+* | **BIAS_CFG2**
   | Always 16'b0000010100100100
-* | BIAS_CFG3
+* | **BIAS_CFG3**
   | Always 16'b0000000001000001
-* | BIAS_CFG4
+* | **BIAS_CFG4**
   | Always 16'b0000000000010000
-* | BIAS_CFG_RSVD
+* | **BIAS_CFG_RSVD**
   | Always 16'b0000000000000000
-* | COMMON_CFG0
+* | **COMMON_CFG0**
   | Always 16'b0000000000000000
-* | COMMON_CFG1
+* | **COMMON_CFG1**
   | Always 16'b0000000000000000
-* | POR_CFG
+* | **POR_CFG**
   | Always 16'b0000000000000000
-* | PPF0_CFG
+* | **PPF0_CFG**
   | Something to do with QPLL0. Not yet fully understood. So far:
-   * | Bits 15:13: always 0
-   * | Bit 12: 1 if using fractional-N, 0 if not
-   * | Bit 11: 0 if using fractional-N, 1 if not
-   * | Bit 10: both 0 and 1 seen, but no clear pattern yet
-   * | Bits 9:0: always 0
-* | PPF1_CFG
+  | * Bits 15:13: always 0
+  | * Bit 12: 1 if using fractional-N, 0 if not
+  | * Bit 11: 0 if using fractional-N, 1 if not
+  | * Bit 10: both 0 and 1 seen, but no clear pattern yet
+  | * Bits 9:0: always 0
+* | **PPF1_CFG**
   | Seems to be same mapping as PPF0_CFG but for QPLL1
-* | QPLL0CLKOUT_RATE
+* | **QPLL0CLKOUT_RATE**
   | QPLL0 output divide-by-two control. Set to "HALF" to enable the divider or "FULL" to bypass it.
-* | QPLL0_CFG0
+* | **QPLL0_CFG0**
   | Always 16'b0011001100011100
-* | QPLL0_CFG1
+* | **QPLL0_CFG1**
   | Always 16'b1101000000111000
-* | QPLL0_CFG1_G3
+* | **QPLL0_CFG1_G3**
   | Always 16'b1101000000111000
-* | QPLL0_CFG2
+* | **QPLL0_CFG2**
   | Something to do with QPLL0. Not yet fully understood. So far:
-   * | Bits 15:12: always 0
-   * | Bits 11:6: always 1
-   * | Bits 5:2: always 0
-   * | Bits 1:0: both 1 if using fractional-N, 0 if not
-* | QPLL0_CFG2_G3
+  | * Bits 15:12: always 0
+  | * Bits 11:6: always 1
+  | * Bits 5:2: always 0
+  | * Bits 1:0: both 1 if using fractional-N, 0 if not
+* | **QPLL0_CFG2_G3**
   | Always same as QPLL0_CFG2
-* | QPLL0_CFG3
+* | **QPLL0_CFG3**
   | Always 16'b0000000100100000
-* | QPLL0_CFG4
+* | **QPLL0_CFG4**
   | Something to do with QPLL0. Not yet fully understood. So far:
-   * | Bits 15:8: always 0
-   * | Bit 7: 1 if using fractional-N, 0 if not
-   * | Bits 6:3: always 0
-   * | Bit 2: 1 if using fractional-N, 0 if not
-   * | Bit 1: 0 if using fractional-N, 1 if not
-   * | Bit 0: both 0 and 1 seen, but no clear pattern yet
+  |  * Bits 15:8: always 0
+  |  * Bit 7: 1 if using fractional-N, 0 if not
+  |  * Bits 6:3: always 0
+  |  * Bit 2: 1 if using fractional-N, 0 if not
+  |  * Bit 1: 0 if using fractional-N, 1 if not
+  |  * Bit 0: both 0 and 1 seen, but no clear pattern yet
 * | QPLL0_CP
   | Always 10'b0011111111
 * | QPLL0_CP_G3
