@@ -721,7 +721,7 @@ Attributes
 * | **USB_U2_SAS_MAX_COM**
 * | **USB_U2_SAS_MIN_COM**
 * | **USE_PCS_CLK_PHASE_SEL**
-* | **Y_ALL_MODE
+* | **Y_ALL_MODE**
 
 Ports
 -----------
