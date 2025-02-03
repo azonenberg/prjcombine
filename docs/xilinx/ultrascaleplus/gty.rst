@@ -62,11 +62,11 @@ Attributes
   | Always 16'b0000000000000000
 * | **PPF0_CFG**
   | Something to do with QPLL0. Not yet fully understood. So far:
-  | * Bits 15:13: always 0
-  | * Bit 12: 1 if using fractional-N, 0 if not
-  | * Bit 11: 0 if using fractional-N, 1 if not
-  | * Bit 10: both 0 and 1 seen, but no clear pattern yet
-  | * Bits 9:0: always 0
+    * Bits 15:13: always 0
+    * Bit 12: 1 if using fractional-N, 0 if not
+    * Bit 11: 0 if using fractional-N, 1 if not
+    * Bit 10: both 0 and 1 seen, but no clear pattern yet
+    * Bits 9:0: always 0
 * | **PPF1_CFG**
   | Seems to be same mapping as PPF0_CFG but for QPLL1
 * | **QPLL0CLKOUT_RATE**
@@ -79,44 +79,44 @@ Attributes
   | Always 16'b1101000000111000
 * | **QPLL0_CFG2**
   | Something to do with QPLL0. Not yet fully understood. So far:
-  | * Bits 15:12: always 0
-  | * Bits 11:6: always 1
-  | * Bits 5:2: always 0
-  | * Bits 1:0: both 1 if using fractional-N, 0 if not
+    * Bits 15:12: always 0
+    * Bits 11:6: always 1
+    * Bits 5:2: always 0
+    * Bits 1:0: both 1 if using fractional-N, 0 if not
 * | **QPLL0_CFG2_G3**
   | Always same as QPLL0_CFG2
 * | **QPLL0_CFG3**
   | Always 16'b0000000100100000
 * | **QPLL0_CFG4**
   | Something to do with QPLL0. Not yet fully understood. So far:
-  |  * Bits 15:8: always 0
-  |  * Bit 7: 1 if using fractional-N, 0 if not
-  |  * Bits 6:3: always 0
-  |  * Bit 2: 1 if using fractional-N, 0 if not
-  |  * Bit 1: 0 if using fractional-N, 1 if not
-  |  * Bit 0: both 0 and 1 seen, but no clear pattern yet
-* | QPLL0_CP
+     * Bits 15:8: always 0
+     * Bit 7: 1 if using fractional-N, 0 if not
+     * Bits 6:3: always 0
+     * Bit 2: 1 if using fractional-N, 0 if not
+     * Bit 1: 0 if using fractional-N, 1 if not
+     * Bit 0: both 0 and 1 seen, but no clear pattern yet
+* | **QPLL0_CP**
   | Always 10'b0011111111
-* | QPLL0_CP_G3
+* | **QPLL0_CP_G3**
   | Always 10'b0000001111
-* | QPLL0_FBDIV
+* | **QPLL0_FBDIV**
   | QPLL0 feedback divider N. Set to an integer between 16 and 160 to control the PLL multiplier between VCO and PFD.
-* | QPLL0_FBDIV_G3
+* | **QPLL0_FBDIV_G3**
   | Related to QPLL0 feedback divider but not yet understood. Values seen so far 160 and 128. Possible values in DRP range 16 to 160.
-* | QPLL0_INIT_CFG0
+* | **QPLL0_INIT_CFG0**
   | Always 16'b0000001010110010
-* | QPLL0_INIT_CFG1
+* | **QPLL0_INIT_CFG1**
   | Always 8'b00000000
-* | QPLL0_LOCK_CFG
+* | **QPLL0_LOCK_CFG**
   | Always 16'b0010010111101000
-* | QPLL0_LOCK_CFG_G3
+* | **QPLL0_LOCK_CFG_G3**
   | Always 16'b0010010111101000
-* | QPLL0_LPF
+* | **QPLL0_LPF**
   | Probably controls something in the QPLL0 loop filter
-   * | Bit 9: always 1
-   * | Bits 8:6: always 0
-   * | Bit 5: 0 if using fractional-N, 1 if not
-   * | Bits 4:0: always 1
+    * Bit 9: always 1
+    * Bits 8:6: always 0
+    * Bit 5: 0 if using fractional-N, 1 if not
+    * Bits 4:0: always 1
 * | QPLL0_LPF_G3
   | Always 10'b0111010101
 * | QPLL0_PCI_EN
