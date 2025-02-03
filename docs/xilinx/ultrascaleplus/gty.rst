@@ -216,9 +216,9 @@ Attributes
   | Selects something related to simulation, ignored for synthesis. Should always be set to "FAST"
 * | **SIM_RESET_SPEEDUP**
   | Selects a tradeoff between simulation fidelity and speed. Valid values:
-      * | "TRUE" (default) simplified reset model, fastest simulation
-      * | "FAST_ALIGN": speed up simulation of TX/RX buffer bypass mode
-      * | "FALSE": most accurate modeling of reset behavior
+  * "TRUE" (default) simplified reset model, fastest simulation
+  * "FAST_ALIGN": speed up simulation of TX/RX buffer bypass mode
+  * "FALSE": most accurate modeling of reset behavior
 * | **UB_CFG0**
   | Always 16'b0000000000000000. Related to the hard MicroBlaze somehow.
 * | **UB_CFG1**
