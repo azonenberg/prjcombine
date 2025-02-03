@@ -79,22 +79,22 @@ Attributes
   | Always 16'b1101000000111000
 * | **QPLL0_CFG2**
   | Something to do with QPLL0. Not yet fully understood. So far:
-    * Bits 15:12: always 0
-    * Bits 11:6: always 1
-    * Bits 5:2: always 0
-    * Bits 1:0: both 1 if using fractional-N, 0 if not
+  * Bits 15:12: always 0
+  * Bits 11:6: always 1
+  * Bits 5:2: always 0
+  * Bits 1:0: both 1 if using fractional-N, 0 if not
 * | **QPLL0_CFG2_G3**
   | Always same as QPLL0_CFG2
 * | **QPLL0_CFG3**
   | Always 16'b0000000100100000
 * | **QPLL0_CFG4**
   | Something to do with QPLL0. Not yet fully understood. So far:
-     * Bits 15:8: always 0
-     * Bit 7: 1 if using fractional-N, 0 if not
-     * Bits 6:3: always 0
-     * Bit 2: 1 if using fractional-N, 0 if not
-     * Bit 1: 0 if using fractional-N, 1 if not
-     * Bit 0: both 0 and 1 seen, but no clear pattern yet
+  * Bits 15:8: always 0
+  * Bit 7: 1 if using fractional-N, 0 if not
+  * Bits 6:3: always 0
+  * Bit 2: 1 if using fractional-N, 0 if not
+  * Bit 1: 0 if using fractional-N, 1 if not
+  * Bit 0: both 0 and 1 seen, but no clear pattern yet
 * | **QPLL0_CP**
   | Always 10'b0011111111
 * | **QPLL0_CP_G3**
@@ -113,129 +113,130 @@ Attributes
   | Always 16'b0010010111101000
 * | **QPLL0_LPF**
   | Probably controls something in the QPLL0 loop filter
-    * Bit 9: always 1
-    * Bits 8:6: always 0
-    * Bit 5: 0 if using fractional-N, 1 if not
-    * Bits 4:0: always 1
-* | QPLL0_LPF_G3
+  * Bit 9: always 1
+  * Bits 8:6: always 0
+  * Bit 5: 0 if using fractional-N, 1 if not
+  * Bits 4:0: always 1
+* | **QPLL0_LPF_G3**
   | Always 10'b0111010101
-* | QPLL0_PCI_EN
+* | **QPLL0_PCI_EN**
   | Always 1'b0 in all configurations tested to date, but we have not tested anything using the PCIe IP.
-* | QPLL0_RATE_SW_USE_DRP
+* | **QPLL0_RATE_SW_USE_DRP**
   | Always 1'b1
-* | QPLL0_REFCLK_DIV
+* | **QPLL0_REFCLK_DIV**
   | QPLL0 reference clock divider. Set to an integer between 1 and 4 to control the input divider between refclk input and PFD.
   | NOTE: according to UG578 table B-1, this attribute can also take the values 5, 6, 8, 10, 12, 16, and 20. Maybe the PLL doesn't like input frequencies this low?
-* | QPLL0_SDM_CFG0
-   * | Bits 15:8: always 0
-   * | Bit 7: 0 if using fractional-N, 1 if not
-   * | Bits 6:0: always 0
-* | QPLL0_SDM_CFG1
+* | **QPLL0_SDM_CFG0**
+  * Bits 15:8: always 0
+  * Bit 7: 0 if using fractional-N, 1 if not
+  * Bits 6:0: always 0
+* | **QPLL0_SDM_CFG1**
   | So far, always 16'b0000000000000000
-* | QPLL0_SDM_CFG2
+* | **QPLL0_SDM_CFG2**
   | So far, always 16'b0000000000000000
-* | QPLL1CLKOUT_RATE
+* | **QPLL1CLKOUT_RATE**
   | QPLL1 output divide-by-two control. Set to "HALF" to enable the divider or "FULL" to bypass it.
-* | QPLL1_CFG0
+* | **QPLL1_CFG0**
   | TODO
-* | QPLL1_CFG1
+* | **QPLL1_CFG1**
   | TODO
-* | QPLL1_CFG1_G3
+* | **QPLL1_CFG1_G3**
   | TODO
-* | QPLL1_CFG2
+* | **QPLL1_CFG2**
   | TODO
-* | QPLL1_CFG2_G3
+* | **QPLL1_CFG2_G3**
   | TODO
-* | QPLL1_CFG3
+* | **QPLL1_CFG3**
   | TODO
-* | QPLL1_CFG4
+* | **QPLL1_CFG4**
   | Need to work on this more
-  * | Bits 16:2: always 0
-  * | Bit 1: always 1
-  * | Bit 0: 0 for half rate mode, 1 for full rate mode (TODO verify with more configs)
-* | QPLL1_CP
+  * Bits 16:2: always 0
+  * Bit 1: always 1
+  * Bit 0: 0 for half rate mode, 1 for full rate mode (TODO verify with more configs)
+* | **QPLL1_CP**
   | TODO
-* | QPLL1_CP_G3
+* | **QPLL1_CP_G3**
   | TODO
-* | QPLL1_FBDIV
+* | **QPLL1_FBDIV**
   | QPLL1 feedback divider N. Set to an integer between 16 and 160 to control the PLL multiplier between VCO and PFD.
-* | QPLL1_FBDIV_G3
+* | **QPLL1_FBDIV_G3**
   | Related to QPLL1 feedback divider but not yet understood
-* | QPLL1_INIT_CFG0
+* | **QPLL1_INIT_CFG0**
   | TODO
-* | QPLL1_INIT_CFG1
+* | **QPLL1_INIT_CFG1**
   | TODO
-* | QPLL1_LOCK_CFG
+* | **QPLL1_LOCK_CFG**
   | TODO
-* | QPLL1_LOCK_CFG_G3
+* | **QPLL1_LOCK_CFG_G3**
   | TODO
-* | QPLL1_LPF
+* | **QPLL1_LPF**
   | TODO
-* | QPLL1_LPF_G3
+* | **QPLL1_LPF_G3**
   | TODO
-* | QPLL1_PCI_EN
+* | **QPLL1_PCI_EN**
   | Always 1'b0 in all configurations tested to date, but we have not tested anything using the PCIe IP.
-* | QPLL1_RATE_SW_USE_DRP
+* | **QPLL1_RATE_SW_USE_DRP**
   | TODO
-* | QPLL1_REFCLK_DIV
+* | **QPLL1_REFCLK_DIV**
   | QPLL1 reference clock divider. Set to an integer between 1 and 4 to control the input divider between refclk input and PFD.
   | NOTE: according to UG578 table B-1, this attribute can also take the values 5, 6, 8, 10, 12, 16, and 20. Maybe the PLL doesn't like input frequencies this low?
-* | QPLL1_SDM_CFG0
+* | **QPLL1_SDM_CFG0**
   | TODO
-* | QPLL1_SDM_CFG1
+* | **QPLL1_SDM_CFG1**
   | TODO
-* | QPLL1_SDM_CFG2
+* | **QPLL1_SDM_CFG2**
   | TODO
-* | RSVD_ATTR0
-  | TODO
-* | RSVD_ATTR1
-  | TODO
-* | RSVD_ATTR2
-  | TODO
-* | RSVD_ATTR3
-  | TODO
-* | RXRECCLKOUT0_SEL
-  | TODO
-* | RXRECCLKOUT1_SEL
-  | TODO
-* | SARC_ENB
-  | TODO
-* | SARC_SEL
-  | TODO
-* | SDM0INITSEED0_0
-  | TODO
-* | SDM0INITSEED0_1
-  | TODO
-* | SDM1INITSEED0_0
-  | TODO
-* | SDM1INITSEED0_1
-  | TODO
-* | SIM_DEVICE
+* | **RSVD_ATTR0**
+  | Always 16'b0000000000000000
+* | **RSVD_ATTR1**
+  | Always 16'b0000000000000000
+* | **RSVD_ATTR2**
+  | Always 16'b0000000000000000
+* | **RSVD_ATTR3**
+  | Always 16'b0000000000000000
+* | **RXRECCLKOUT0_SEL**
+  | Controls RX recovered clock output, TODO
+* | **RXRECCLKOUT1_SEL**
+  | Controls RX recovered clock output, TODO
+* | **SARC_ENB**
+  | Always 1'b0
+* | **SARC_SEL**
+  | Always 1'b0
+* | **SDM0INITSEED0_0**
+  | Always 16'b0000000100010001
+* | **SDM0INITSEED0_1**
+  | Always 9'b000010001
+* | **SDM1INITSEED0_0**
+  | Always 16'b0000000100010001
+* | **SDM1INITSEED0_1**
+  | Always 9'b000010001
+* | **SIM_DEVICE**
   | Selects the simulation model to use, ignored for synthesis. Should always be set to "ULTRASCALE_PLUS"
-* | SIM_MODE
+* | **SIM_MODE**
   | Selects something related to simulation, ignored for synthesis. Should always be set to "FAST"
-* | SIM_RESET_SPEEDUP
+* | **SIM_RESET_SPEEDUP**
   | Selects a tradeoff between simulation fidelity and speed. Valid values:
       * | "TRUE" (default) simplified reset model, fastest simulation
       * | "FAST_ALIGN": speed up simulation of TX/RX buffer bypass mode
       * | "FALSE": most accurate modeling of reset behavior
-* | UB_CFG0
-  | Unknown, related to the hard MicroBlaze in the COMMON. Should always be set to 16'b0000000000000000
-* | UB_CFG1
-  | Unknown, related to the hard MicroBlaze in the COMMON. Should always be set to 16'b0000000000000000
-* | UB_CFG2
-  | Unknown, related to the hard MicroBlaze in the COMMON. Should always be set to 16'b0000000000000000
-* | UB_CFG3
-  | Unknown, related to the hard MicroBlaze in the COMMON. Should always be set to 16'b0000000000000000
-* | UB_CFG4
-  | Unknown, related to the hard MicroBlaze in the COMMON. Should always be set to 16'b0000000000000000
-* | UB_CFG5
-  | Unknown, related to the hard MicroBlaze in the COMMON. Should always be set to 16'b0000010000000000
-* | UB_CFG6
-  | Unknown, related to the hard MicroBlaze in the COMMON. Should always be set to 16'b0000000000000000
+* | **UB_CFG0**
+  | Always 16'b0000000000000000. Related to the hard MicroBlaze somehow.
+* | **UB_CFG1**
+  | Always 16'b0000000000000000. Related to the hard MicroBlaze somehow.
+* | **UB_CFG2**
+  | Always 16'b0000000000000000. Related to the hard MicroBlaze somehow.
+* | **UB_CFG3**
+  | Always 16'b0000000000000000. Related to the hard MicroBlaze somehow.
+* | **UB_CFG4**
+  | Always 16'b0000000000000000. Related to the hard MicroBlaze somehow.
+* | **UB_CFG5**
+  | Always 16'b0000010000000000. Related to the hard MicroBlaze somehow.
+* | **UB_CFG6**
+  | Always 16'b0000000000000000. Related to the hard MicroBlaze somehow.
 
 Ports
 -----------
 
 ``GTYE4_CHANNEL``
 ===============
+**
