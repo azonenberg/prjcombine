@@ -62,11 +62,11 @@ Attributes
   | Always 16'b0000000000000000
 * | **PPF0_CFG**
   | Something to do with QPLL0. Not yet fully understood. So far:
-       * Bits 15:13: always 0
-       * Bit 12: 1 if using fractional-N, 0 if not
-       * Bit 11: 0 if using fractional-N, 1 if not
-       * Bit 10: both 0 and 1 seen, but no clear pattern yet
-       * Bits 9:0: always 0
+  * Bits 15:13: always 0
+  * Bit 12: 1 if using fractional-N, 0 if not
+  * Bit 11: 0 if using fractional-N, 1 if not
+  * Bit 10: both 0 and 1 seen, but no clear pattern yet
+  * Bits 9:0: always 0
 * | **PPF1_CFG**
   | Seems to be same mapping as PPF0_CFG but for QPLL1
 * | **QPLL0CLKOUT_RATE**
