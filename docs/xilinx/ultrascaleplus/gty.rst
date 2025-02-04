@@ -539,6 +539,9 @@ Attributes
 * | **RX_BUFFER_CFG**
 * | **RX_CAPFF_SARC_ENB**
 * | **RX_CLK25_DIV**
+  | Divider from reference clock to get a nominally 25 MHz internal clock for the RX logic.
+  | The divider must be between 1 and 32, and the resulting clock frequency must not exceed 25 MHz.
+  | For example, use a divide value of 4 for a 100 MHz reference clock, but 5 for 100.01 MHz.
 * | **RX_CLKMUX_EN**
 * | **RX_CLK_SLIP_OVRD**
 * | **RX_CM_BUF_CFG**
