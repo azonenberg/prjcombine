@@ -243,20 +243,36 @@ Ports
 Attributes
 -----------
 * | **ACJTAG_DEBUG_MODE**
+  | Factory test interface. Always 1'b0
 * | **ACJTAG_MODE**
+  | Factory test interface. Always 1'b0
 * | **ACJTAG_RESET**
+  | Factory test interface. Always 1'b0
 * | **ADAPT_CFG0**
 * | **ADAPT_CFG1**
 * | **ADAPT_CFG2**
 * | **ALIGN_COMMA_DOUBLE**
+  | Set "TRUE" to search for a 20-bit wide double 8b/10b comma character, consisting of a comma+ followed by a comma-. Set "FALSE" for normal operation (align to a single comma).
 * | **ALIGN_COMMA_ENABLE**
+  | Set "TRUE" to enable the 8b/10b RX comma aligner, "FALSE" to disable.
 * | **ALIGN_COMMA_WORD**
+  | Controls which byte lane positions a comma can be aligned to.
+  * 1: comma may occur in any byte lane
+  * 2: comma may occur in byte lane 0 or (if 32/40 bit internal datapath) lane 2
+  * 4: comma may only occur in byte lane 0 (only valid if 32/40 bit internal datapath).
+  | Note that the comma aligner works on the internal datapath (max 4 byte width), not the external (max 8 byte). This means that when operating the external datapath in half-rate mode compared to the internal
+  (e.g. 4 byte internal, 8 byte external) the comma may align to either the low or high half of the output word (e.g. byte lanes 0 or 4 if ALIGN_COMMA_WORD is 4)
 * | **ALIGN_MCOMMA_DET**
+  | Set "TRUE" for the comma aligner to search for comma-. Set "FALSE" to ignore negative commas.
 * | **ALIGN_PCOMMA_DET**
+  | Set "TRUE" for the comma aligner to search for comma+. Set "FALSE" to ignore positive commas.
 * | **CBCC_DATA_SOURCE_SEL**
 * | **CDR_SWAP_MODE_EN**
+  | Something undocumented in the clock recovery block. Always 1'b0.
 * | **CFOK_PWRSVE_EN**
+  | Enables low power mode for something, maybe? Always 1'b1.
 * | **CHAN_BOND_KEEP_ALIGN**
+  | Set "TRUE" to preserve channel bond alignment when a multilane link is idle. Set "FALSE" to realign when the link wakes up, or if not using channel bonding.
 * | **CHAN_BOND_MAX_SKEW**
 * | **CHAN_BOND_SEQ_1_1**
 * | **CHAN_BOND_SEQ_1_2**
@@ -399,6 +415,9 @@ Attributes
 * | **PD_TRANS_TIME_NONE_P2**
 * | **PD_TRANS_TIME_TO_P2**
 * | **PREIQ_FREQ_BST**
+  | Controls some kind of data rate dependent high frequency boost. Exact functionality not well understood.
+  | Values range from 0 or 1 at lower data rates (roughly 10 Gbps and below) to 2 around 20 Gbps and 3 around 25 Gbps, but RE is still ongoing.
+  | In particular, around 10 Gbps the transfer function from data rate to PREIQ_FREQ_BST appears non-monotonic.
 * | **RATE_SW_USE_DRP**
 * | **RCLK_SIPO_DLY_ENB**
 * | **RCLK_SIPO_INV_EN**
