@@ -332,14 +332,23 @@ Attributes
 * | **CLK_COR_SEQ_2_USE**
 * | **CLK_COR_SEQ_LEN**
 * | **CPLL_CFG0**
+  | Channel PLL configuration TODO
 * | **CPLL_CFG1**
+  | Channel PLL configuration TODO
 * | **CPLL_CFG2**
+  | Channel PLL configuration TODO
 * | **CPLL_CFG3**
+  | Channel PLL configuration TODO
 * | **CPLL_FBDIV**
+  | Channel PLL configuration TODO
 * | **CPLL_FBDIV_45**
+  | Channel PLL configuration TODO
 * | **CPLL_INIT_CFG0**
+  | Channel PLL configuration TODO
 * | **CPLL_LOCK_CFG**
+  | Channel PLL configuration TODO
 * | **CPLL_REFCLK_DIV**
+  | Channel PLL configuration TODO
 * | **CTLE3_OCAP_EXT_CTRL**
 * | **CTLE3_OCAP_EXT_EN**
 * | **DDI_CTRL**
@@ -350,43 +359,82 @@ Attributes
 * | **DMONITOR_CFG0**
 * | **DMONITOR_CFG1**
 * | **ES_CLK_PHASE_SEL**
+  | Controls something unknown in the eye scan block. Set to 1'b0.
 * | **ES_CONTROL**
+  | Command register for the eye scan logic. Should be set to 6'b000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_ERRDET_EN**
+  | Switches the SDATA bus between equivalent-time sampling and error-detect modes. Set to "FALSE" on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_EYE_SCAN_EN**
+  * "TRUE": enable eye scan logic
+  * "FALSE": power down eye scan logic for a slight power savings if not used
 * | **ES_HORZ_OFFSET**
+  | X position of current eye scan sample. Set to 12'b000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_PRESCALE**
+  | Prescaler (2^{1+ES_PRESCALE}) for sample/error count. Must be 0 to 31; set to 5'b00000 if not using eye scan
 * | **ES_QUALIFIER0**
+  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUALIFIER1**
+  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUALIFIER2**
+  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUALIFIER3**
+  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUALIFIER4**
+  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUALIFIER5**
+  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUALIFIER6**
+  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUALIFIER7**
+  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUALIFIER8**
+  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUALIFIER9**
+  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUAL_MASK0**
+  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUAL_MASK1**
+  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUAL_MASK2**
+  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUAL_MASK3**
+  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUAL_MASK4**
+  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUAL_MASK5**
+  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUAL_MASK6**
+  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUAL_MASK7**
+  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUAL_MASK8**
+  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_QUAL_MASK9**
+  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_SDATA_MASK0**
+  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_SDATA_MASK1**
+  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_SDATA_MASK2**
+  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_SDATA_MASK3**
+  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_SDATA_MASK4**
+  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_SDATA_MASK5**
+  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_SDATA_MASK6**
+  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_SDATA_MASK7**
+  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_SDATA_MASK8**
+  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **ES_SDATA_MASK9**
+  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
 * | **EYESCAN_VP_RANGE**
+  | Related to eye scan, but doesn't seem to be used for anything? Always set to 0
 * | **EYE_SCAN_SWAP_EN**
+  | Related to eye scan, exact functionality unclear. Always set to 1'b0.
 * | **FTS_DESKEW_SEQ_ENABLE**
 * | **FTS_LANE_DESKEW_CFG**
 * | **FTS_LANE_DESKEW_EN**
@@ -686,6 +734,9 @@ Attributes
 * | **TXSYNC_OVRD**
 * | **TXSYNC_SKIP_DA**
 * | **TX_CLK25_DIV**
+  | Divider from reference clock to get a nominally 25 MHz internal clock for the TX logic.
+  | The divider must be between 1 and 32, and the resulting clock frequency must not exceed 25 MHz.
+  | For example, use a divide value of 4 for a 100 MHz reference clock, but 5 for 100.01 MHz.
 * | **TX_CLKMUX_EN**
 * | **TX_DATA_WIDTH**
 * | **TX_DCC_LOOP_RST_CFG**
@@ -728,7 +779,9 @@ Attributes
 * | **TX_SAMPLE_PERIOD**
 * | **TX_SW_MEAS**
 * | **TX_VREG_CTRL**
+  | Controls an internal voltage regulator in the transmit logic, maybe a trim setting? Always 3'b011
 * | **TX_VREG_PDB**
+  | Enables power to an internal voltage regulator in the transmit logic. Always 1'b1
 * | **TX_VREG_VREFSEL**
 * | **TX_XCLK_SEL**
 * | **USB_BOTH_BURST_IDLE**
@@ -760,7 +813,9 @@ Attributes
 * | **USB_U2_SAS_MAX_COM**
 * | **USB_U2_SAS_MIN_COM**
 * | **USE_PCS_CLK_PHASE_SEL**
+  | Always 1'b0.
 * | **Y_ALL_MODE**
+  | Always 1'b0.
 
 Ports
 -----------
