@@ -22,6 +22,7 @@ Xilinx FPGAs
    spartan3/index
    fpgacore/index
    spartan6/index
+   ultrascaleplus/index
    virtex4/index
    virtex5/index
    virtex6/index
