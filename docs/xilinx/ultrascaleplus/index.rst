@@ -1,5 +1,5 @@
-UltrasScale+
-########
+UltraScale+
+###########
 
 .. todo:: intro document, bitstream format, other tiles, jtag, ...
 
