@@ -90,7 +90,10 @@ Attributes
   | Seems to be same mapping as PPF0_CFG but for QPLL1
 
 * | ``QPLL0CLKOUT_RATE``
-  | QPLL0 output divide-by-two control. Set to "HALF" to enable the divider or "FULL" to bypass it.
+  | QPLL0 output divide-by-two control.
+
+  * ``HALF``: Enable the output divider (output clock is half the VCO rate)
+  * ``FULL``: Bypass the divider (output clock is equal to the VCO rate)
 
 * | ``QPLL0_CFG0``
   | Always ``16'b0011001100011100``
@@ -168,6 +171,7 @@ Attributes
 
 * | ``QPLL0_REFCLK_DIV``
   | QPLL0 reference clock divider. Set to an integer between 1 and 4 to control the input divider between refclk input and PFD.
+
   | NOTE: according to UG578 table B-1, this attribute can also take the values 5, 6, 8, 10, 12, 16, and 20. Maybe the PLL doesn't like input frequencies this low?
 
 * | ``QPLL0_SDM_CFG0``
@@ -184,7 +188,10 @@ Attributes
   | Related to the sigma-delta modulator for fractional-N in QPLL0. Always ``16'b0000000000000000``
 
 * | ``QPLL1CLKOUT_RATE``
-  | QPLL1 output divide-by-two control. Set to ``HALF`` to enable the divider or ``FULL`` to bypass it.
+  | QPLL1 output divide-by-two control.
+
+  * ``HALF``: Enable the output divider (output clock is half the VCO rate)
+  * ``FULL``: Bypass the divider (output clock is equal to the VCO rate)
 
 * | ``QPLL1_CFG0``
   | TODO
@@ -366,61 +373,74 @@ Attributes
   * 2: comma may occur in byte lane 0 or (if 32/40 bit internal datapath) lane 2
   * 4: comma may only occur in byte lane 0 (only valid if 32/40 bit internal datapath).
 
-  | Note that the comma aligner works on the internal datapath (max 4 byte width), not the external (max 8 byte). This means that when operating the external datapath in half-rate mode compared to the internal (e.g. 4 byte internal, 8 byte external) the comma may align to either the low or high half of the output word (e.g. byte lanes 0 or 4 if ALIGN_COMMA_WORD is 4)
+  | Note that the comma aligner works on the internal datapath (max 4 byte width), not the external (max 8 byte). This means that when operating the external datapath in half-rate mode compared to the internal (e.g. 4 byte internal, 8 byte external) the comma may align to either the low or high half of the output word (e.g. byte lanes 0 or 4 if ``ALIGN_COMMA_WORD`` is 4)
 
 * | ``ALIGN_MCOMMA_DET``
-  | Set "TRUE" for the comma aligner to search for comma-. Set "FALSE" to ignore negative commas.
+
+  * ``TRUE``: Comma aligner searches for comma-
+  * ``FALSE``: Ignore negative commas
 
 * | ``ALIGN_PCOMMA_DET``
-  | Set "TRUE" for the comma aligner to search for comma+. Set "FALSE" to ignore positive commas.
+
+  * ``TRUE``: Comma aligner searches for comma+
+  * ``FALSE``: Ignore positive commas
 
 * | ``CBCC_DATA_SOURCE_SEL``
 
 * | ``CDR_SWAP_MODE_EN``
-  | Something undocumented in the clock recovery block. Always 1'b0.
+  | Something undocumented in the clock recovery block. Always ``1'b0``.
 
 * | ``CFOK_PWRSVE_EN``
-  | Enables low power mode for something, maybe? Always 1'b1.
+  | Enables power save mode for something, maybe? Always ``1'b1``.
 
 * | ``CHAN_BOND_KEEP_ALIGN``
-  | Set "TRUE" to preserve channel bond alignment when a multilane link is idle. Set "FALSE" to realign when the link wakes up, or if not using channel bonding.
+
+  * ``TRUE``: Preserve channel bond alignment when a multilane link is idle
+  * ``FALSE``: Realign when the link wakes up.
+
+  If not using channel bonding, set to ``FALSE``.
+
 * | ``CHAN_BOND_MAX_SKEW``
   | Maximum skew between lanes, in symbols, that the elastic buffer can correct for. Must be between 1 and 14.
   | Optimal value is floor(D/2) where D is the number of symbols between channel bonding sequences. Smaller values require increasingly tight tolerances on PCB trace skew, while values above D/2 risk the deskew block locking to an incorrect alignment.
 
   | If not using channel bonding, set to 1.
 * | ``CHAN_BOND_SEQ_1_1``
-  | First 8 or 10 bit (depending on RX_DATA_WIDTH / CBCC_DATA_SOURCE_SEL) symbol in channel bonding sequence 1. Value is protocol dependent; set to 10'b0000000000 if not using channel bonding.
+  | First 8 or 10 bit (depending on ``RX_DATA_WIDTH`` / ``CBCC_DATA_SOURCE_SEL``) symbol in channel bonding sequence 1. Value is protocol dependent; set to ``10'b0000000000`` if not using channel bonding.
 
 * | ``CHAN_BOND_SEQ_1_2``
-  | Second 8 or 10 bit (depending on RX_DATA_WIDTH / CBCC_DATA_SOURCE_SEL) symbol in channel bonding sequence 1. Value is protocol dependent; set to 10'b0000000000 if not using channel bonding.
+  | Second 8 or 10 bit (depending on ``RX_DATA_WIDTH`` / ``CBCC_DATA_SOURCE_SEL``) symbol in channel bonding sequence 1. Value is protocol dependent; set to ``10'b0000000000`` if not using channel bonding.
 
 * | ``CHAN_BOND_SEQ_1_3``
-  | Third 8 or 10 bit (depending on RX_DATA_WIDTH / CBCC_DATA_SOURCE_SEL) symbol in channel bonding sequence 1. Value is protocol dependent; set to 10'b0000000000 if not using channel bonding.
+  | Third 8 or 10 bit (depending on ``RX_DATA_WIDTH`` / ``CBCC_DATA_SOURCE_SEL``) symbol in channel bonding sequence 1. Value is protocol dependent; set to ``10'b0000000000`` if not using channel bonding.
 
 * | ``CHAN_BOND_SEQ_1_4``
-  | Fourth 8 or 10 bit (depending on RX_DATA_WIDTH / CBCC_DATA_SOURCE_SEL) symbol in channel bonding sequence 1. Value is protocol dependent; set to 10'b0000000000 if not using channel bonding.
+  | Fourth 8 or 10 bit (depending on ``RX_DATA_WIDTH`` / ``CBCC_DATA_SOURCE_SEL``) symbol in channel bonding sequence 1. Value is protocol dependent; set to ``10'b0000000000`` if not using channel bonding.
 
 * | ``CHAN_BOND_SEQ_1_ENABLE``
-  | Bitmask for channel bonding sequence 1 allowing some symbols within the sequence to be ignored (always match). For each bit, 0 = ignore, 1 = pattern match. Set to 4'b1111 if not using channel bonding.
+  | Bitmask for channel bonding sequence 1 allowing some symbols within the sequence to be ignored (always match). For each bit, 0 = ignore, 1 = pattern match. Set to ``4'b1111`` if not using channel bonding.
 
 * | ``CHAN_BOND_SEQ_2_1``
-  | First 8 or 10 bit (depending on RX_DATA_WIDTH / CBCC_DATA_SOURCE_SEL) symbol in channel bonding sequence 2. Value is protocol dependent; set to 10'b0000000000 if not using channel bonding.
+  | First 8 or 10 bit (depending on ``RX_DATA_WIDTH`` / ``CBCC_DATA_SOURCE_SEL``) symbol in channel bonding sequence 2. Value is protocol dependent; set to ``10'b0000000000`` if not using channel bonding.
 
 * | ``CHAN_BOND_SEQ_2_2``
-  | Second 8 or 10 bit (depending on RX_DATA_WIDTH / CBCC_DATA_SOURCE_SEL) symbol in channel bonding sequence 2. Value is protocol dependent; set to 10'b0000000000 if not using channel bonding.
+  | Second 8 or 10 bit (depending on ``RX_DATA_WIDTH`` / ``CBCC_DATA_SOURCE_SEL``) symbol in channel bonding sequence 2. Value is protocol dependent; set to ``10'b0000000000`` if not using channel bonding.
 
 * | ``CHAN_BOND_SEQ_2_3``
-  | Third 8 or 10 bit (depending on RX_DATA_WIDTH / CBCC_DATA_SOURCE_SEL) symbol in channel bonding sequence 2. Value is protocol dependent; set to 10'b0000000000 if not using channel bonding.
+  | Third 8 or 10 bit (depending on ``RX_DATA_WIDTH`` / ``CBCC_DATA_SOURCE_SEL``) symbol in channel bonding sequence 2. Value is protocol dependent; set to ``10'b0000000000`` if not using channel bonding.
 
 * | ``CHAN_BOND_SEQ_2_4``
-  | Fourth 8 or 10 bit (depending on RX_DATA_WIDTH / CBCC_DATA_SOURCE_SEL) symbol in channel bonding sequence 2. Value is protocol dependent; set to 10'b0000000000 if not using channel bonding.
+  | Fourth 8 or 10 bit (depending on ``RX_DATA_WIDTH`` / ``CBCC_DATA_SOURCE_SEL``) symbol in channel bonding sequence 2. Value is protocol dependent; set to ``10'b0000000000`` if not using channel bonding.
 
 * | ``CHAN_BOND_SEQ_2_ENABLE``
-  | Bitmask for channel bonding sequence 2 allowing some symbols within the sequence to be ignored (always match). For each bit, 0 = ignore, 1 = pattern match. Set to 4'b1111 if not using channel bonding.
+  | Bitmask for channel bonding sequence 2 allowing some symbols within the sequence to be ignored (always match). For each bit, 0 = ignore, 1 = pattern match. Set to ``4'b1111`` if not using channel bonding.
 
 * | ``CHAN_BOND_SEQ_2_USE``
-  | Set "TRUE" for channel bonding to match either sequence 1 or 2. Set "FALSE" to only match sequence 1 (sequence 2 values dontcare), or if not using channel bonding.
+
+  * ``TRUE``: Channel bonding will search for either sequence 1 or 2
+  * ``FALSE``: Channel bonding only searches for sequence 1 (sequence 2 values dontcare)
+
+  Set to ``FALSE`` if not using channel bonding.
 
 * | ``CHAN_BOND_SEQ_LEN``
   | Number of symbols in the channel bonding sequence (starting from symbol 1). Must be 1, 2, or 4. Set to 1 if not using channel bonding.
@@ -457,22 +477,31 @@ Attributes
 * | ``CLK_COR_SEQ_LEN``
 * | ``CPLL_CFG0``
   | Channel PLL configuration TODO
+
 * | ``CPLL_CFG1``
   | Channel PLL configuration TODO
+
 * | ``CPLL_CFG2``
   | Channel PLL configuration TODO
+
 * | ``CPLL_CFG3``
   | Channel PLL configuration TODO
+
 * | ``CPLL_FBDIV``
   | Channel PLL configuration TODO
+
 * | ``CPLL_FBDIV_45``
   | Channel PLL configuration TODO
+
 * | ``CPLL_INIT_CFG0``
   | Channel PLL configuration TODO
+
 * | ``CPLL_LOCK_CFG``
   | Channel PLL configuration TODO
+
 * | ``CPLL_REFCLK_DIV``
   | Channel PLL configuration TODO
+
 * | ``CTLE3_OCAP_EXT_CTRL``
 * | ``CTLE3_OCAP_EXT_EN``
 * | ``DDI_CTRL``
@@ -482,83 +511,123 @@ Attributes
 * | ``DELAY_ELEC``
 * | ``DMONITOR_CFG0``
 * | ``DMONITOR_CFG1``
+
 * | ``ES_CLK_PHASE_SEL``
-  | Controls something unknown in the eye scan block. Set to 1'b0.
+  | Controls something unknown in the eye scan block. Set to ``1'b0``.
+
 * | ``ES_CONTROL``
-  | Command register for the eye scan logic. Should be set to 6'b000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Command register for the eye scan logic. Should be set to ``6'b000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_ERRDET_EN``
-  | Switches the SDATA bus between equivalent-time sampling and error-detect modes. Set to "FALSE" on the primitive, then update as needed via DRP if doing eye scans.
+  | Switches the SDATA bus between equivalent-time sampling and error-detect modes. Set to ``FALSE`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_EYE_SCAN_EN``
-  * "TRUE": enable eye scan logic
-  * "FALSE": power down eye scan logic for a slight power savings if not used
+
+  * ``TRUE``: enable eye scan logic
+  * ``FALSE``: power down eye scan logic for a slight power savings if not used
+
 * | ``ES_HORZ_OFFSET``
-  | X position of current eye scan sample. Set to 12'b000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | X position of current eye scan sample. Set to ``12'b000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_PRESCALE``
-  | Prescaler (2^{1+ES_PRESCALE}) for sample/error count. Must be 0 to 31; set to 5'b00000 if not using eye scan
+  | Prescaler (2^{1+ES_PRESCALE}) for sample/error count. Must be 0 to 31; set to ``5'b00000`` if not using eye scan
+
 * | ``ES_QUALIFIER0``
-  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern match value for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUALIFIER1``
-  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern match value for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUALIFIER2``
-  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern match value for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUALIFIER3``
-  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern match value for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUALIFIER4``
-  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern match value for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUALIFIER5``
-  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern match value for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUALIFIER6``
-  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern match value for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUALIFIER7``
-  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern match value for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUALIFIER8``
-  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern match value for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUALIFIER9``
-  | Pattern match value for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern match value for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUAL_MASK0``
-  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUAL_MASK1``
-  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUAL_MASK2``
-  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUAL_MASK3``
-  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUAL_MASK4``
-  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUAL_MASK5``
-  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUAL_MASK6``
-  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUAL_MASK7``
-  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUAL_MASK8``
-  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_QUAL_MASK9``
-  | Pattern mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Pattern mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_SDATA_MASK0``
-  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Data mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_SDATA_MASK1``
-  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Data mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_SDATA_MASK2``
-  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Data mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_SDATA_MASK3``
-  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Data mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_SDATA_MASK4``
-  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Data mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_SDATA_MASK5``
-  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Data mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_SDATA_MASK6``
-  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Data mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_SDATA_MASK7``
-  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Data mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_SDATA_MASK8``
-  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Data mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``ES_SDATA_MASK9``
-  | Data mask for eye scan qualified BER measurements. Set to 16'b0000000000000000 on the primitive, then update as needed via DRP if doing eye scans.
+  | Data mask for eye scan qualified BER measurements. Set to ``16'b0000000000000000`` on the primitive, then update as needed via DRP if doing eye scans.
+
 * | ``EYESCAN_VP_RANGE``
   | Related to eye scan, but doesn't seem to be used for anything? Always set to 0
+
 * | ``EYE_SCAN_SWAP_EN``
-  | Related to eye scan, exact functionality unclear. Always set to 1'b0.
+  | Related to eye scan, exact functionality unclear. Always set to ``1'b0``.
+
 * | ``FTS_DESKEW_SEQ_ENABLE``
 * | ``FTS_LANE_DESKEW_CFG``
 * | ``FTS_LANE_DESKEW_EN``
