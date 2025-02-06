@@ -303,7 +303,7 @@ Attributes
 * | **CHAN_BOND_SEQ_LEN**
   | Number of symbols in the channel bonding sequence (starting from symbol 1). Must be 1, 2, or 4. Set to 1 if not using channel bonding.
 * | **CH_HSPMUX**
-  | Some kind of internal multiplexer setting. Appears to be two one-hot 2:1 muxes with the remaining bits set zero at this time, but not fully understood yet. More RE needed. Value depends on data rate.
+  | Some kind of internal multiplexer setting. Appears to be two one-hot 2:1 muxes with the remaining bits set zero at this time, but not fully understood yet. More RE needed. Value depends on data rate. EDIT: this is wrong, some new configs have 4 bits set
 * | **CKCAL1_CFG_0**
 * | **CKCAL1_CFG_1**
 * | **CKCAL1_CFG_2**
@@ -678,10 +678,19 @@ Attributes
 * | **RX_VREG_CTRL**
 * | **RX_VREG_PDB**
 * | **RX_WIDEMODE_CDR**
+  | Data rate dependent adjustment of something in the RX clock recovery block.
+  * 15 Gbps and below: 2'b01
+  * 20 Gbps and above: 2'b10
+  | RE is ongoing, the exact transition points are not currently known.
 * | **RX_WIDEMODE_CDR_GEN3**
+  | Always 2'b00
 * | **RX_WIDEMODE_CDR_GEN4**
+  | Always 2'b01
 * | **RX_XCLK_SEL**
 * | **RX_XMODE_SEL**
+  | Data rate dependent adjustment of something in the receiver.
+  * 10.3125 Gbps and below: 1'b1
+  * 15 Gbps and above: 1'b0
 * | **SAMPLE_CLK_PHASE**
 * | **SAS_12G_MODE**
 * | **SATA_BURST_SEQ_LEN**
@@ -704,6 +713,11 @@ Attributes
 * | **TXDLY_CFG**
 * | **TXDLY_LCFG**
 * | **TXDRV_FREQBAND**
+  | Specifies the frequency range the output driver is operating in.
+  * 10.3125 Gbps and below: 0
+  * 15-20 Gbps: 1
+  * 25 Gbps: 3
+  | RE is ongoing, the exact transition points are not currently known.
 * | **TXFE_CFG0**
 * | **TXFE_CFG1**
 * | **TXFE_CFG2**
