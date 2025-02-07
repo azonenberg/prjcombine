@@ -334,7 +334,328 @@ Attributes
   | Always ``16'b0000000000000000``. Related to the hard MicroBlaze somehow.
 
 Ports
------------
+------
+
+* | ``BGBYPASSB``
+  | Enable the internal bandgap voltage reference. Always ``1'b1``
+
+* | ``BGMONITORENB``
+  | Related to the internal bandgap voltage reference. Always ``1'b1``.
+
+* | ``BGPDB``
+  | Power up the internal bandgap voltage reference. Always ``1'b1``.
+
+* | ``BGRCALOVRD``
+  | Related to calibration of the internal bandgap voltage reference. Always ``5'b11111``.
+
+* | ``BGRCALOVRDENB``
+  | Related to calibration of the internal bandgap voltage reference. Always ``1'b1``.
+
+* | ``DRPADDR``
+  | DRP address bus. If bridging to APB, connect to ``PADDR``. Note that ``DRPADDR`` is word addressed, not byte addressed, so it may be necessary to truncate LSBs of ``PADDR``.
+
+* | ``DRPCLK``
+  | DRP clock. If bridging to APB, connect to ``PCLK``.
+
+* | ``DRPDI``
+  | DRP write data. If bridging to APB, connect to ``PWDATA``
+
+* | ``DRPDO``
+  | DRP read data. If bridging to APB, connect to ``PRDATA``
+
+* | ``DRPEN``
+  | DRP enable. If bridging to APB, connect to ``PENABLE``
+
+* | ``DRPRDY``
+  | DRP transaction complete. If bridging to APB, connect to ``PREADY``
+
+* | ``DRPWE``
+  | DRP write enable. If bridging to APB, connect to ``PWRITE``
+
+* | ``GTGREFCLK0``
+  | Connection point for internally generated factory test clock source. Always ``1'b0``
+
+* | ``GTGREFCLK1``
+  | Connection point for internally generated factory test clock source. Always ``1'b0``
+
+* | ``GTNORTHREFCLK00``
+  | Input reference clock 0 to QPLL0 coming from quad N-1 or N-2 - one or two quads to the **south** (yes, the naming is backwards).
+
+  | Must be connected to either ``1'b0`` (if not used) or the output of an ``IBUFDS_GTE4`` cell in one of the south quads.
+
+* | ``GTNORTHREFCLK01``
+  | Input reference clock 0 to QPLL1 coming from quad N-1 or N-2 - one or two quads to the **south** (yes, the naming is backwards).
+
+  | Must be connected to either ``1'b0`` (if not used) or the output of an ``IBUFDS_GTE4`` cell in one of the south quads.
+
+* | ``GTNORTHREFCLK10``
+  | Input reference clock 1 to QPLL0 coming from quad N-1 or N-2 - one or two quads to the **south** (yes, the naming is backwards).
+
+  | Must be connected to either ``1'b0`` (if not used) or the output of an ``IBUFDS_GTE4`` cell in one of the south quads.
+
+* | ``GTNORTHREFCLK11``
+  | Input reference clock 1 to QPLL1 coming from quad N-1 or N-2 - one or two quads to the **south** (yes, the naming is backwards).
+
+  | Must be connected to either ``1'b0`` (if not used) or the output of an ``IBUFDS_GTE4`` cell in one of the south quads.
+
+* | ``GTREFCLK00``
+  | Input reference clock 0 to QPLL0 coming the dedicated reference pins of the local quad.
+
+  | Must be connected to either ``1'b0`` (if not used) or the output of an ``IBUFDS_GTE4`` cell in the same quad the ``GTYE4_COMMON`` is located in.
+
+* | ``GTREFCLK01``
+  | Input reference clock 0 to QPLL1 coming the dedicated reference pins of the local quad.
+
+  | Must be connected to either ``1'b0`` (if not used) or the output of an ``IBUFDS_GTE4`` cell in the same quad the ``GTYE4_COMMON`` is located in.
+
+* | ``GTREFCLK10``
+  | Input reference clock 1 to QPLL0 coming the dedicated reference pins of the local quad.
+
+  | Must be connected to either ``1'b0`` (if not used) or the output of an ``IBUFDS_GTE4`` cell in the same quad the ``GTYE4_COMMON`` is located in.
+
+* | ``GTREFCLK11``
+  | Input reference clock 1 to QPLL1 coming the dedicated reference pins of the local quad.
+
+  | Must be connected to either ``1'b0`` (if not used) or the output of an ``IBUFDS_GTE4`` cell in the same quad the ``GTYE4_COMMON`` is located in.
+
+* | ``GTSOUTHREFCLK00``
+  | Input reference clock 0 to QPLL0 coming from quad N+1 or N+2 - one or two quads to the **north** (yes, the naming is backwards).
+
+  | Must be connected to either ``1'b0`` (if not used) or the output of an ``IBUFDS_GTE4`` cell in one of the north quads.
+
+* | ``GTSOUTHREFCLK01``
+  | Input reference clock 0 to QPLL1 coming from quad N+1 or N+2 - one or two quads to the **north** (yes, the naming is backwards).
+
+  | Must be connected to either ``1'b0`` (if not used) or the output of an ``IBUFDS_GTE4`` cell in one of the north quads.
+
+* | ``GTSOUTHREFCLK10``
+  | Input reference clock 1 to QPLL0 coming from quad N+1 or N+2 - one or two quads to the **north** (yes, the naming is backwards).
+
+  | Must be connected to either ``1'b0`` (if not used) or the output of an ``IBUFDS_GTE4`` cell in one of the north quads.
+
+* | ``GTSOUTHREFCLK11``
+  | Input reference clock 1 to QPLL1 coming from quad N+1 or N+2 - one or two quads to the **north** (yes, the naming is backwards).
+
+  | Must be connected to either ``1'b0`` (if not used) or the output of an ``IBUFDS_GTE4`` cell in one of the north quads.
+
+* | ``PCIERATEQPLL0``
+  | Reserved, tie to ``1'b0``
+
+* | ``PCIERATEQPLL1``
+  | Reserved, tie to ``1'b0``
+
+* | ``PMARSVD0``
+  | Reserved, tie to ``8'b00000000``
+
+* | ``PMARSVD1``
+  | Reserved, tie to ``8'b00000000``
+
+* | ``PMARSVDOUT0``
+  | Reserved, leave floating
+
+* | ``PMARSVDOUT1``
+  | Reserved, leave floating
+
+* | ``QPLL0CLKRSVD0``
+  | Reserved, tie to ``1'b0``
+
+* | ``QPLL0CLKRSVD1``
+  | Reserved, tie to ``1'b0``
+
+* | ``QPLL0FBCLKLOST``
+  | Active-high output indicating loss of feedback clock to QPLL0 PFD
+
+* | ``QPLL0FBDIV``
+  | Reserved, tie to ``8'h0``
+
+* | ``QPLL0LOCK``
+  | Active high output indicating QPLL0 lock
+
+* | ``QPLL0LOCKDETCLK``
+  | Reference clock used to drive ``QPLL0FBCLKLOST`` and ``QPLL0REFCLKLOST`` clock detection logic. Must be generated from a separate source (not synchronous to the QPLL reference clock, or generated by the QPLL).
+
+* | ``QPLL0LOCKEN``
+  | Enable QPLL0 lock detection logic. Always tie to ``1'b1``
+
+* | ``QPLL0OUTCLK``
+  | Output clock from the QPLL, after the optional divide-by-two stage controlled by ``QPLL0CLKOUT_RATE``
+
+* | ``QPLL0OUTREFCLK``
+  | Forwarded copy of the QPLL reference clock, taken from the output of the ``QPLL0REFCLKSEL`` mux before the ``QPLL0_REFCLK_DIV`` divider. Connect to the ``QPLL0OUTREFCLK`` input of each instantiated ``GTYE4_CHANNEL`` primitive in the quad.
+
+* | ``QPLL0PD``
+  | Active-high power down signal, for disabling the QPLL when not used.
+
+* | ``QPLL0REFCLKLOST``
+  | Active-high output indicating loss of the reference clock to QPLL0.
+
+* | ``QPLL0REFCLKSEL``
+  | Reference clock input mux for QPLL0. The QPLL must be manually reset if this value is changed after configuration.
+
+  * 0: Reserved, do not use
+  * 1: ``GTREFCLK00`` input
+  * 2: ``GTREFCLK10`` input
+  * 3: ``GTNORTHREFCLK00`` input (from quad to the **south**)
+  * 4: ``GTNORTHREFCLK10`` input (from quad to the **south**)
+  * 5: ``GTSOUTHREFCLK00`` input (from quad to the **north**)
+  * 6: ``GTSOUTHREFCLK10`` input (from quad to the **north**)
+  * 7: Internally generated test clock, do not use
+
+* | ``QPLL0RESET``
+  | Active-high reset for QPLL0.
+
+* | ``QPLL1CLKRSVD0``
+  | Reserved, tie to ``1'b0``
+
+* | ``QPLL1CLKRSVD1``
+  | Reserved, tie to ``1'b0``
+
+* | ``QPLL1FBCLKLOST``
+  | Active-high output indicating loss of feedback clock to QPLL1 PFD
+
+* | ``QPLL1FBDIV``
+  | Reserved, tie to ``8'h0``
+
+* | ``QPLL1LOCK``
+  | Active high output indicating QPLL1 lock
+
+* | ``QPLL1LOCKDETCLK``
+  | Reference clock used to drive ``QPLL1FBCLKLOST`` and ``QPLL1REFCLKLOST`` clock detection logic. Must be generated from a separate source (not synchronous to the QPLL reference clock, or generated by the QPLL).
+
+* | ``QPLL1LOCKEN``
+  | Enable QPLL1 lock detection logic. Always tie to ``1'b1``
+
+* | ``QPLL1OUTCLK``
+  | Output clock from the QPLL, after the optional divide-by-two stage controlled by ``QPLL1CLKOUT_RATE``
+
+* | ``QPLL1OUTREFCLK``
+  | Forwarded copy of the QPLL reference clock, taken from the output of the ``QPLL1REFCLKSEL`` mux before the ``QPLL1_REFCLK_DIV`` divider. Connect to the ``QPLL1OUTREFCLK`` input of each instantiated ``GTYE4_CHANNEL`` primitive in the quad.
+
+* | ``QPLL1PD``
+  | Active-high power down signal, for disabling the QPLL when not used.
+
+* | ``QPLL1REFCLKLOST``
+  | Active-high output indicating loss of the reference clock to QPLL0.
+
+* | ``QPLL1REFCLKSEL``
+  | Reference clock input mux for QPLL1. The QPLL must be manually reset if this value is changed after configuration.
+
+* | ``QPLL1RESET``
+  | Active-high reset for QPLL1.
+
+* | ``QPLLDMONITOR0``
+  | Reserved, leave floating
+
+* | ``QPLLDMONITOR1``
+  | Reserved, leave floating
+
+* | ``QPLLRSVD1``
+  | Reserved, tie to ``8'b00000000``
+
+* | ``QPLLRSVD2``
+  | Reserved, tie to ``5'b00000``
+
+* | ``QPLLRSVD3``
+  | Reserved, tie to ``5'b00000``
+
+* | ``QPLLRSVD4``
+  | Reserved, tie to ``8'b00000000``
+
+* | ``RCALENB``
+  | Reserved, tie to ``1'b1``
+
+* | ``REFCLKOUTMONITOR0``
+  | QPLL0 reference clock mux monitor output. Not clear how this differs from ``QPLL0OUTREFCLK``. Maybe an internal test point that doesn't drive the clock tree? Most designs should float this as it's not needed.
+
+* | ``REFCLKOUTMONITOR1``
+  | QPLL1 reference clock mux monitor output. Not clear how this differs from ``QPLL1OUTREFCLK``. Maybe an internal test point that doesn't drive the clock tree? Most designs should float this as it's not needed.
+
+* | ``RXRECCLK0SEL``
+
+* | ``RXRECCLK1SEL``
+
+* | ``SDM0DATA``
+
+* | ``SDM0FINALOUT``
+
+* | ``SDM0RESET``
+
+* | ``SDM0TESTDATA``
+
+* | ``SDM0TOGGLE``
+
+* | ``SDM0WIDTH``
+
+* | ``SDM1DATA``
+
+* | ``SDM1FINALOUT``
+
+* | ``SDM1RESET``
+
+* | ``SDM1TESTDATA``
+
+* | ``SDM1TOGGLE``
+
+* | ``SDM1WIDTH``
+
+* | ``UBCFGSTREAMEN``
+
+* | ``UBDADDR``
+
+* | ``UBDEN``
+
+* | ``UBDI``
+
+* | ``UBDO``
+
+* | ``UBDRDY``
+
+* | ``UBDWE``
+
+* | ``UBENABLE``
+
+* | ``UBGPI``
+
+* | ``UBINTR``
+
+* | ``UBIOLMBRST``
+
+* | ``UBMBRST``
+
+* | ``UBMDMCAPTURE``
+
+* | ``UBMDMDBGRST``
+
+* | ``UBMDMDBGUPDATE``
+
+* | ``UBMDMREGEN``
+  | Unknown input to hard MicroBlaze. Tie to ``4'h0``
+
+* | ``UBMDMSHIFT``
+  | Unknown input to hard MicroBlaze. Tie to ``1'b0``
+
+* | ``UBMDMSYSRST``
+  | Reset input for hard MicroBlaze? Tie to ``1'b0``.
+
+* | ``UBMDMTCK``
+  | JTAG TCK pin from hard MicroBlaze. Tie to ``1'b0``.
+  | TODO: poke at this
+
+* | ``UBMDMTDI``
+  | JTAG TDI pin from hard MicroBlaze. Tie to ``1'b0``.
+  | TODO: poke at this
+
+* | ``UBMDMTDO``
+  | JTAG TDO pin from hard MicroBlaze. Leave floating.
+  | TODO: poke at this
+
+* | ``UBRSVDOUT``
+  | Output from hard MicroBlaze. Leave floating.
+  | TODO: poke at this
+
+* | ``UBTXUART``
+  | UART output from the hard MicroBlaze. Most designs should float this.
+  | TODO: actually see if there's any output on this during normal operation
 
 ``GTYE4_CHANNEL``
 =================
