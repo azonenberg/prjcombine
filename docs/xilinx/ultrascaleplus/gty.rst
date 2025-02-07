@@ -194,31 +194,31 @@ Attributes
   * ``FULL``: Bypass the divider (output clock is equal to the VCO rate)
 
 * | ``QPLL1_CFG0``
-  | TODO
+  | Always ``16'b0011001100011100``
 
 * | ``QPLL1_CFG1``
-  | TODO
+  | Always ``16'b1101000000111000``
 
 * | ``QPLL1_CFG1_G3``
-  | TODO
+  | Always ``16'b1101000000111000``
 
 * | ``QPLL1_CFG2``
-  | TODO
+  | TODO (see ``QPLL0_CFG2`)
 
 * | ``QPLL1_CFG2_G3``
-  | TODO
+  | TODO (see ``QPLL0_CFG2_G3`)
 
 * | ``QPLL1_CFG3``
-  | TODO
+  | Always ``16'b0000000100100000``
 
 * | ``QPLL1_CFG4``
-  | TODO
+  | TODO (see ``QPLL0_CFG4`)
 
 * | ``QPLL1_CP``
-  | TODO
+  | Always ``10'b0011111111``
 
 * | ``QPLL1_CP_G3``
-  | TODO
+  | Always ``10'b0001111111``
 
 * | ``QPLL1_FBDIV``
   | QPLL1 feedback divider N. Set to an integer between 16 and 160 to control the PLL multiplier between VCO and PFD.
@@ -227,41 +227,45 @@ Attributes
   | Related to QPLL1 feedback divider but not yet understood
 
 * | ``QPLL1_INIT_CFG0``
-  | TODO
+  | Always ``16'b0000001010110010``
 
 * | ``QPLL1_INIT_CFG1``
-  | TODO
+  | Always ``8'b00000000``
 
 * | ``QPLL1_LOCK_CFG``
-  | TODO
+  | Always ``16'b0010010111101000``
 
 * | ``QPLL1_LOCK_CFG_G3``
-  | TODO
+  | Always ``16'b0010010111101000``
 
 * | ``QPLL1_LPF``
-  | TODO
+  | TODO (see ``QPLL0_LPF``)
 
 * | ``QPLL1_LPF_G3``
-  | TODO
+  | Always ``10'b0111010100``
 
 * | ``QPLL1_PCI_EN``
-  | Always 1'b0 in all configurations tested to date, but we have not tested anything using the PCIe IP.
+  | Always ``1'b0`` in all configurations tested to date, but we have not tested anything using the PCIe IP.
 
 * | ``QPLL1_RATE_SW_USE_DRP``
-  | TODO
+  | Always ``1'b1``
 
 * | ``QPLL1_REFCLK_DIV``
   | QPLL1 reference clock divider. Set to an integer between 1 and 4 to control the input divider between refclk input and PFD.
   | NOTE: according to UG578 table B-1, this attribute can also take the values 5, 6, 8, 10, 12, 16, and 20. Maybe the PLL doesn't like input frequencies this low?
 
 * | ``QPLL1_SDM_CFG0``
-  | TODO
+  | Related to the sigma-delta modulator for fractional-N in QPLL1.
+
+  * Bits 15:8: always 0
+  * Bit 7: 0 if using fractional-N, 1 if not
+  * Bits 6:0: always 0
 
 * | ``QPLL1_SDM_CFG1``
-  | TODO
+  | Always ``16'b0000000000000000``
 
 * | ``QPLL1_SDM_CFG2``
-  | TODO
+  | Always ``16'b0000000000000000``
 
 * | ``RSVD_ATTR0``
   | Always ``16'b0000000000000000``
