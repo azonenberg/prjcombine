@@ -571,62 +571,103 @@ Ports
   | QPLL1 reference clock mux monitor output. Not clear how this differs from ``QPLL1OUTREFCLK``. Maybe an internal test point that doesn't drive the clock tree? Most designs should float this as it's not needed.
 
 * | ``RXRECCLK0SEL``
+  | Mux selector for recovered clock output. Connect to ``RXRECCLK_SEL`` port of an ``OBUFDS_GTE4_ADV`` if outputting a recovered clock, or float if not required.
 
 * | ``RXRECCLK1SEL``
+  | Mux selector for recovered clock output. Connect to ``RXRECCLK_SEL`` port of an ``OBUFDS_GTE4_ADV`` if outputting a recovered clock, or float if not required.
 
 * | ``SDM0DATA``
+  | Fractional part of the fractional-N divider for QPLL0. Bits 23:0 are valid, bit 24 is a dontcare.
 
 * | ``SDM0FINALOUT``
+  | Reserved, leave floating
 
 * | ``SDM0RESET``
+  | Active-high reset for the QPLL0 fractional-N divider
 
 * | ``SDM0TESTDATA``
+  | Reserved, leave floating
 
 * | ``SDM0TOGGLE``
+  | Asynchronous strobe for loading the ``SDM0DATA`` value into the internal PLL sigma-delta modulator clock domain. The following timing constraints apply:
+
+  * Setup time: 1 SYSTEM clock cycle from ``SDM0DATA`` valid to ``SDM0TOGGLE`` high
+  * Pulse width: 3 PFD clock cycles of ``SDM0TOGGLE`` high
+  * Hold time: 3 PFD clock cycles from ``SDM0TOGGLE`` low to ``SDM0DATA`` invalid
+
+  | SYSTEM clock apparently refers to the clock domain driving ``SDM0DATA`` and ``SDM0TOGGLE`` which should be one of the ``USRCLK`` or ``DRPCLK`` domains?
 
 * | ``SDM0WIDTH``
+  | Width of the fractional-N divide value for QPLL0. Legal values are 16, 20, or 24. Should normally be tied to 24 to enable the greatest dynamic range possible for fractional-N.
 
 * | ``SDM1DATA``
+  | Fractional part of the fractional-N divider for QPLL1. Bits 23:0 are valid, bit 24 is a dontcare.
 
 * | ``SDM1FINALOUT``
+  | Reserved, leave floating
 
 * | ``SDM1RESET``
+  | Active-high reset for the QPLL1 fractional-N divider
 
 * | ``SDM1TESTDATA``
+  | Reserved, leave floating
 
 * | ``SDM1TOGGLE``
+  | Asynchronous strobe for loading the ``SDM1DATA`` value into the internal PLL sigma-delta modulator clock domain. The following timing constraints apply:
+
+  * Setup time: 1 SYSTEM clock cycle from ``SDM1DATA`` valid to ``SDM1TOGGLE`` high
+  * Pulse width: 3 PFD clock cycles of ``SDM1TOGGLE`` high
+  * Hold time: 3 PFD clock cycles from ``SDM1TOGGLE`` low to ``SDM1DATA`` invalid
+
+  | SYSTEM clock apparently refers to the clock domain driving ``SDM1DATA`` and ``SDM1TOGGLE`` which should be one of the ``USRCLK`` or ``DRPCLK`` domains?
 
 * | ``SDM1WIDTH``
+  | Width of the fractional-N divide value for QPLL1. Legal values are 16, 20, or 24. Should normally be tied to 24 to enable the greatest dynamic range possible for fractional-N.
 
 * | ``UBCFGSTREAMEN``
+  | Unknown, related to configuration. Tie to ``1'b0``
 
 * | ``UBDADDR``
+  | DRP output from hard MicroBlaze to access the DRP? Leave floating.
 
 * | ``UBDEN``
+  | DRP output from hard MicroBlaze to access the DRP? Leave floating.
 
 * | ``UBDI``
+  | DRP output from hard MicroBlaze to access the DRP? Leave floating.
 
 * | ``UBDO``
+  | DRP input from hard MicroBlaze to access the DRP? Tie to ``16'h0``
 
 * | ``UBDRDY``
+  | DRP input from hard MicroBlaze to access the DRP? Tie to ``1'h0``
 
 * | ``UBDWE``
+  | DRP output from hard MicroBlaze to access the DRP? Leave floating.
 
 * | ``UBENABLE``
+  | DRP output from hard MicroBlaze to access the DRP? Leave floating.
 
 * | ``UBGPI``
+  | Unknown input to hard MicroBlaze. Tie to ``2'b0``
 
 * | ``UBINTR``
+  | Interrupt input to hard MicroBlaze. Tie to ``2'b0``
 
 * | ``UBIOLMBRST``
+  | Unknown reset input to hard MicroBlaze. Tie to ``1'b0``
 
 * | ``UBMBRST``
+  | Unknown reset input to hard MicroBlaze. Tie to ``1'b0``
 
 * | ``UBMDMCAPTURE``
+  | Unknown input to hard MicroBlaze. Tie to ``1'b0``
 
 * | ``UBMDMDBGRST``
+  | Unknown reset input to hard MicroBlaze. Tie to ``1'b0``
 
 * | ``UBMDMDBGUPDATE``
+  | Unknown input to hard MicroBlaze. Tie to ``1'b0``
 
 * | ``UBMDMREGEN``
   | Unknown input to hard MicroBlaze. Tie to ``4'h0``
@@ -1091,257 +1132,491 @@ Attributes
 * | ``RXDFE_KH_CFG1``
 * | ``RXDFE_KH_CFG2``
 * | ``RXDFE_KH_CFG3``
+
 * | ``RXDFE_OS_CFG0``
+
 * | ``RXDFE_OS_CFG1``
+
 * | ``RXDFE_UT_CFG0``
+
 * | ``RXDFE_UT_CFG1``
+
 * | ``RXDFE_UT_CFG2``
+
 * | ``RXDFE_VP_CFG0``
+
 * | ``RXDFE_VP_CFG1``
+
 * | ``RXDLY_CFG``
+
 * | ``RXDLY_LCFG``
+
 * | ``RXELECIDLE_CFG``
+
 * | ``RXGBOX_FIFO_INIT_RD_ADDR``
+
 * | ``RXGEARBOX_EN``
+
 * | ``RXISCANRESET_TIME``
+
 * | ``RXLPM_CFG``
+
 * | ``RXLPM_GC_CFG``
+
 * | ``RXLPM_KH_CFG0``
+
 * | ``RXLPM_KH_CFG1``
+
 * | ``RXLPM_OS_CFG0``
+
 * | ``RXLPM_OS_CFG1``
+
 * | ``RXOOB_CFG``
+
 * | ``RXOOB_CLK_CFG``
+
 * | ``RXOSCALRESET_TIME``
+
 * | ``RXOUT_DIV``
+
 * | ``RXPCSRESET_TIME``
+
 * | ``RXPHBEACON_CFG``
+
 * | ``RXPHDLY_CFG``
+
 * | ``RXPHSAMP_CFG``
+
 * | ``RXPHSLIP_CFG``
+
 * | ``RXPH_MONITOR_SEL``
+
 * | ``RXPI_CFG0``
+
 * | ``RXPI_CFG1``
+
 * | ``RXPMACLK_SEL``
+
 * | ``RXPMARESET_TIME``
+
 * | ``RXPRBS_ERR_LOOPBACK``
+
 * | ``RXPRBS_LINKACQ_CNT``
+
 * | ``RXREFCLKDIV2_SEL``
+
 * | ``RXSLIDE_AUTO_WAIT``
+
 * | ``RXSLIDE_MODE``
+
 * | ``RXSYNC_MULTILANE``
+
 * | ``RXSYNC_OVRD``
+
 * | ``RXSYNC_SKIP_DA``
+
 * | ``RX_AFE_CM_EN``
+
 * | ``RX_BIAS_CFG0``
+
 * | ``RX_BUFFER_CFG``
+
 * | ``RX_CAPFF_SARC_ENB``
+
 * | ``RX_CLK25_DIV``
   | Divider from reference clock to get a nominally 25 MHz internal clock for the RX logic.
   | The divider must be between 1 and 32, and the resulting clock frequency must not exceed 25 MHz.
   | For example, use a divide value of 4 for a 100 MHz reference clock, but 5 for 100.01 MHz.
+
 * | ``RX_CLKMUX_EN``
+
 * | ``RX_CLK_SLIP_OVRD``
+
 * | ``RX_CM_BUF_CFG``
+
 * | ``RX_CM_BUF_PD``
+
 * | ``RX_CM_SEL``
+
 * | ``RX_CM_TRIM``
+
 * | ``RX_CTLE_PWR_SAVING``
+
 * | ``RX_CTLE_RES_CTRL``
+
 * | ``RX_DATA_WIDTH``
+
 * | ``RX_DDI_SEL``
+
 * | ``RX_DEFER_RESET_BUF_EN``
+
 * | ``RX_DEGEN_CTRL``
+
 * | ``RX_DFELPM_CFG0``
+
 * | ``RX_DFELPM_CFG1``
+
 * | ``RX_DFELPM_KLKH_AGC_STUP_EN``
+
 * | ``RX_DFE_AGC_CFG1``
+
 * | ``RX_DFE_KL_LPM_KH_CFG0``
+
 * | ``RX_DFE_KL_LPM_KH_CFG1``
+
 * | ``RX_DFE_KL_LPM_KL_CFG0``
+
 * | ``RX_DFE_KL_LPM_KL_CFG1``
+
 * | ``RX_DFE_LPM_HOLD_DURING_EIDLE``
+
 * | ``RX_DISPERR_SEQ_MATCH``
+
 * | ``RX_DIVRESET_TIME``
+
 * | ``RX_EN_CTLE_RCAL_B``
+
 * | ``RX_EN_SUM_RCAL_B``
+
 * | ``RX_EYESCAN_VS_CODE``
+
 * | ``RX_EYESCAN_VS_NEG_DIR``
+
 * | ``RX_EYESCAN_VS_RANGE``
+
 * | ``RX_EYESCAN_VS_UT_SIGN``
+
 * | ``RX_FABINT_USRCLK_FLOP``
+
 * | ``RX_I2V_FILTER_EN``
+
 * | ``RX_INT_DATAWIDTH``
+
 * | ``RX_PMA_POWER_SAVE``
+
 * | ``RX_PMA_RSV0``
+
 * | ``RX_PROGDIV_CFG``
+
 * | ``RX_PROGDIV_RATE``
+
 * | ``RX_RESLOAD_CTRL``
+
 * | ``RX_RESLOAD_OVRD``
+
 * | ``RX_SAMPLE_PERIOD``
+
 * | ``RX_SUM_DEGEN_AVTT_OVERITE``
+
 * | ``RX_SUM_DFETAPREP_EN``
+
 * | ``RX_SUM_IREF_TUNE``
+
 * | ``RX_SUM_PWR_SAVING``
+
 * | ``RX_SUM_RES_CTRL``
+
 * | ``RX_SUM_VCMTUNE``
+
 * | ``RX_SUM_VCM_BIAS_TUNE_EN``
+
 * | ``RX_SUM_VCM_OVWR``
+
 * | ``RX_SUM_VREF_TUNE``
+
 * | ``RX_TUNE_AFE_OS``
+
 * | ``RX_VREG_CTRL``
+
 * | ``RX_VREG_PDB``
+
 * | ``RX_WIDEMODE_CDR``
   | Data rate dependent adjustment of something in the RX clock recovery block.
+
   * 15 Gbps and below: 2'b01
   * 20 Gbps and above: 2'b10
+
   | RE is ongoing, the exact transition points are not currently known.
+
 * | ``RX_WIDEMODE_CDR_GEN3``
   | Always 2'b00
+
 * | ``RX_WIDEMODE_CDR_GEN4``
   | Always 2'b01
+
 * | ``RX_XCLK_SEL``
+
 * | ``RX_XMODE_SEL``
   | Data rate dependent adjustment of something in the receiver.
+
   * 10.3125 Gbps and below: 1'b1
   * 15 Gbps and above: 1'b0
+
 * | ``SAMPLE_CLK_PHASE``
+
 * | ``SAS_12G_MODE``
+
 * | ``SATA_BURST_SEQ_LEN``
+
 * | ``SATA_CPLL_CFG``
+
 * | ``SHOW_REALIGN_COMMA``
+
 * | ``SIM_DEVICE``
+
 * | ``SIM_MODE``
+
 * | ``SIM_RECEIVER_DETECT_PASS``
+
 * | ``SIM_RESET_SPEEDUP``
+
 * | ``SIM_TX_EIDLE_DRIVE_LEVEL``
+
 * | ``SRSTMODE``
+
 * | ``TAPDLY_SET_TX``
+
 * | ``TERM_RCAL_CFG``
+
 * | ``TERM_RCAL_OVRD``
+
 * | ``TRANS_TIME_RATE``
+
 * | ``TST_RSV0``
+
 * | ``TST_RSV1``
+
 * | ``TXBUF_EN``
+
 * | ``TXBUF_RESET_ON_RATE_CHANGE``
+
 * | ``TXDLY_CFG``
+
 * | ``TXDLY_LCFG``
+
 * | ``TXDRV_FREQBAND``
   | Specifies the frequency range the output driver is operating in.
+
   * 10.3125 Gbps and below: 0
   * 15-20 Gbps: 1
   * 25 Gbps: 3
+
   | RE is ongoing, the exact transition points are not currently known.
+
 * | ``TXFE_CFG0``
+
 * | ``TXFE_CFG1``
+
 * | ``TXFE_CFG2``
+
 * | ``TXFE_CFG3``
+
 * | ``TXFIFO_ADDR_CFG``
+
 * | ``TXGBOX_FIFO_INIT_RD_ADDR``
+
 * | ``TXGEARBOX_EN``
+
 * | ``TXOUT_DIV``
+
 * | ``TXPCSRESET_TIME``
+
 * | ``TXPHDLY_CFG0``
+
 * | ``TXPHDLY_CFG1``
+
 * | ``TXPH_CFG``
+
 * | ``TXPH_CFG2``
+
 * | ``TXPH_MONITOR_SEL``
+
 * | ``TXPI_CFG0``
+
 * | ``TXPI_CFG1``
+
 * | ``TXPI_GRAY_SEL``
+
 * | ``TXPI_INVSTROBE_SEL``
+
 * | ``TXPI_PPM``
+
 * | ``TXPI_PPM_CFG``
+
 * | ``TXPI_SYNFREQ_PPM``
+
 * | ``TXPMARESET_TIME``
+
 * | ``TXREFCLKDIV2_SEL``
+
 * | ``TXSWBST_BST``
+
 * | ``TXSWBST_EN``
+
 * | ``TXSWBST_MAG``
+
 * | ``TXSYNC_MULTILANE``
+
 * | ``TXSYNC_OVRD``
+
 * | ``TXSYNC_SKIP_DA``
+
 * | ``TX_CLK25_DIV``
   | Divider from reference clock to get a nominally 25 MHz internal clock for the TX logic.
   | The divider must be between 1 and 32, and the resulting clock frequency must not exceed 25 MHz.
   | For example, use a divide value of 4 for a 100 MHz reference clock, but 5 for 100.01 MHz.
+
 * | ``TX_CLKMUX_EN``
+
 * | ``TX_DATA_WIDTH``
+
 * | ``TX_DCC_LOOP_RST_CFG``
+
 * | ``TX_DEEMPH0``
+
 * | ``TX_DEEMPH1``
+
 * | ``TX_DEEMPH2``
+
 * | ``TX_DEEMPH3``
+
 * | ``TX_DIVRESET_TIME``
+
 * | ``TX_DRIVE_MODE``
+
 * | ``TX_EIDLE_ASSERT_DELAY``
+
 * | ``TX_EIDLE_DEASSERT_DELAY``
+
 * | ``TX_FABINT_USRCLK_FLOP``
+
 * | ``TX_FIFO_BYP_EN``
+
 * | ``TX_IDLE_DATA_ZERO``
+
 * | ``TX_INT_DATAWIDTH``
+
 * | ``TX_LOOPBACK_DRIVE_HIZ``
+
 * | ``TX_MAINCURSOR_SEL``
+
 * | ``TX_MARGIN_FULL_0``
+
 * | ``TX_MARGIN_FULL_1``
+
 * | ``TX_MARGIN_FULL_2``
+
 * | ``TX_MARGIN_FULL_3``
+
 * | ``TX_MARGIN_FULL_4``
+
 * | ``TX_MARGIN_LOW_0``
+
 * | ``TX_MARGIN_LOW_1``
+
 * | ``TX_MARGIN_LOW_2``
+
 * | ``TX_MARGIN_LOW_3``
+
 * | ``TX_MARGIN_LOW_4``
+
 * | ``TX_PHICAL_CFG0``
+
 * | ``TX_PHICAL_CFG1``
+
 * | ``TX_PI_BIASSET``
+
 * | ``TX_PMADATA_OPT``
+
 * | ``TX_PMA_POWER_SAVE``
+
 * | ``TX_PMA_RSV0``
+
 * | ``TX_PMA_RSV1``
+
 * | ``TX_PROGCLK_SEL``
+
 * | ``TX_PROGDIV_CFG``
+
 * | ``TX_PROGDIV_RATE``
+
 * | ``TX_RXDETECT_CFG``
+
 * | ``TX_RXDETECT_REF``
+
 * | ``TX_SAMPLE_PERIOD``
+
 * | ``TX_SW_MEAS``
+
 * | ``TX_VREG_CTRL``
   | Controls an internal voltage regulator in the transmit logic, maybe a trim setting? Always 3'b011
+
 * | ``TX_VREG_PDB``
   | Enables power to an internal voltage regulator in the transmit logic. Always 1'b1
+
 * | ``TX_VREG_VREFSEL``
+
 * | ``TX_XCLK_SEL``
+
 * | ``USB_BOTH_BURST_IDLE``
+
 * | ``USB_BURSTMAX_U3WAKE``
+
 * | ``USB_BURSTMIN_U3WAKE``
+
 * | ``USB_CLK_COR_EQ_EN``
+
 * | ``USB_EXT_CNTL``
+
 * | ``USB_IDLEMAX_POLLING``
+
 * | ``USB_IDLEMIN_POLLING``
+
 * | ``USB_LFPSPING_BURST``
+
 * | ``USB_LFPSPOLLING_BURST``
+
 * | ``USB_LFPSPOLLING_IDLE_MS``
+
 * | ``USB_LFPSU1EXIT_BURST``
+
 * | ``USB_LFPSU2LPEXIT_BURST_MS``
+
 * | ``USB_LFPSU3WAKE_BURST_MS``
+
 * | ``USB_LFPS_TPERIOD``
+
 * | ``USB_LFPS_TPERIOD_ACCURATE``
+
 * | ``USB_MODE``
+
 * | ``USB_PCIE_ERR_REP_DIS``
+
 * | ``USB_PING_SATA_MAX_INIT``
+
 * | ``USB_PING_SATA_MIN_INIT``
+
 * | ``USB_POLL_SATA_MAX_BURST``
+
 * | ``USB_POLL_SATA_MIN_BURST``
+
 * | ``USB_RAW_ELEC``
+
 * | ``USB_RXIDLE_P0_CTRL``
+
 * | ``USB_TXIDLE_TUNE_ENABLE``
+
 * | ``USB_U1_SATA_MAX_WAKE``
+
 * | ``USB_U1_SATA_MIN_WAKE``
+
 * | ``USB_U2_SAS_MAX_COM``
+
 * | ``USB_U2_SAS_MIN_COM``
+
 * | ``USE_PCS_CLK_PHASE_SEL``
   | Always 1'b0.
+
 * | ``Y_ALL_MODE``
   | Always 1'b0.
 
