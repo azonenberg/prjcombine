@@ -40,6 +40,8 @@ Check table 64 of DS922 for full details on voltage ranges and data rates.
 
 Note that the internal transceiver drive circuitry is DDR, i.e. for 20 Gbps data rate the PLL VCO should be running at 10 GHz.
 
+The QPLLs support fractional-N, while the CPLLs only support integer multiples/divisors of the input.
+
 Each quad has two reference clock I/Os. Unlike previous generations of transceiver the reference clock pairs are *not* strictly inputs, it is possible to use them as recovered clock outputs too. TODO: document how recovered clock output works once we have a board that pins out some extra refclk signals we can poke at with a scope
 
 ``GTYE4_COMMON``
@@ -80,11 +82,10 @@ Attributes
 * | ``PPF0_CFG``
   | Something to do with QPLL0. Not yet fully understood. So far:
 
-  * Bits 15:13: always 0
-  * Bit 12: 1 if using fractional-N, 0 if not
-  * Bit 11: 0 if using fractional-N, 1 if not
-  * Bit 10: both 0 and 1 seen, but no clear pattern yet
-  * Bits 9:0: always 0
+  * Bits 15:12: always 0
+  * Bit 11:10: 10 if using fractional-N, 01 otherwise
+  * Bit 9: both 0 and 1 seen, but no clear pattern yet
+  * Bits 8:0: always 0
 
 * | ``PPF1_CFG``
   | Seems to be same mapping as PPF0_CFG but for QPLL1
@@ -110,7 +111,7 @@ Attributes
   * Bits 15:12: always 0
   * Bits 11:6: always 1
   * Bits 5:2: always 0
-  * Bits 1:0: both 1 if using fractional-N, 0 if not
+  * Bits 1:0: 2'b11 if using fractional-N, 2'b00 otherwise
 
 * | ``QPLL0_CFG2_G3``
   | Always same as ``QPLL0_CFG2`` in testing to date
@@ -124,8 +125,7 @@ Attributes
   * Bits 15:8: always 0
   * Bit 7: 1 if using fractional-N, 0 if not
   * Bits 6:3: always 0
-  * Bit 2: 1 if using fractional-N, 0 if not
-  * Bit 1: 0 if using fractional-N, 1 if not
+  * Bits 2:1: 2'b10 if using fractional-N, 2'b01 if not
   * Bit 0: both 0 and 1 seen, but no clear pattern yet
 
 * | ``QPLL0_CP``
